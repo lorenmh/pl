@@ -1,5 +1,6 @@
 var express = require( 'express' ),
     app = express(),
+    path = require( 'path' ),
     bodyParser = require( 'body-parser' ),
     db = require( './db' ),
     resource = require( './resource' ),
@@ -26,6 +27,12 @@ var apiRoutes = [
 
 apiRoutes.forEach( (router) => {
   app.use( '/api', router );
+});
+
+app.use( express.static( './public' ) );
+
+app.get( '/*', (request, response) => {
+  return response.sendFile( path.join( __dirname, 'templates/index.html' ) );
 });
 
 db.sync()

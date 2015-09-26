@@ -26,8 +26,6 @@ function resourceRouter( Model, path, options ) {
       deleteMethod = false
   ;
 
-
-
   // when making queries, we might want to query using a key other than id
   // if the option 'key' is defined, then we query using that key instead
   function query( resourceId ) {
