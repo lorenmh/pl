@@ -7,7 +7,13 @@ var GET = 'GET',
     DELETE = 'DELETE'
 ;
 
-function resourceRouter( Model, path, methods ) {
+function resourceRouter( Model, path, options ) {
+  options = options || {} ;
+
+  var methods = options.methods,
+      key = options.key
+  ;
+  
   var router = express.Router();
 
   var pathStripped = path.replace( /\/$/, '' ),
@@ -19,7 +25,23 @@ function resourceRouter( Model, path, methods ) {
       patchMethod = false,
       deleteMethod = false
   ;
- 
+
+
+
+  // when making queries, we might want to query using a key other than id
+  // if the option 'key' is defined, then we query using that key instead
+  function query( resourceId ) {
+    var q = {};
+    
+    if ( key === undefined ) {
+      q[ 'id' ] = resourceId;
+    } else {
+      q[ key ] = resourceId;
+    }
+
+    return q;
+  }
+
   if ( Array.isArray( methods ) ) {
     methods.forEach( (method) => {
       if ( method === GET ) {
@@ -56,7 +78,7 @@ function resourceRouter( Model, path, methods ) {
 
     one
       .get( (request, response) => {
-        Model.findOne({ id: request.params.id })
+        Model.findOne({ where: query( request.params.id ) })
           .then( (instance) => {
             if ( instance === null ) {
               response.sendStatus( 404 );
@@ -65,8 +87,7 @@ function resourceRouter( Model, path, methods ) {
             }
           })
           .catch( (error) => {
-            response.sendStatus( 400 );
-            response.send( error );
+            response.status( 400 ).send( error );
           })
         ;
       })
@@ -81,8 +102,7 @@ function resourceRouter( Model, path, methods ) {
             response.json( instance );
           })
           .catch( (error) => {
-            response.sendStatus( 400 );
-            response.send( error );
+            response.status( 400 ).send( error );
           })
         ;
       })
@@ -92,7 +112,7 @@ function resourceRouter( Model, path, methods ) {
   if ( patchMethod ) {
     one
       .patch( (request, response) => {
-        Model.update( request.body, { where: { id: request.params.id } } )
+        Model.update( request.body, { where: query( request.params.id ) } )
           .then( (rows) => {
             if ( rows[ 0 ] === 0 ) {
               response.sendStatus( 404 );
@@ -101,8 +121,7 @@ function resourceRouter( Model, path, methods ) {
             }
           })
           .catch( (error) => {
-            response.sendStatus( 400 );
-            response.send( error );
+            response.status( 400 ).send( error );
           })
         ;
       })
@@ -112,7 +131,7 @@ function resourceRouter( Model, path, methods ) {
   if ( deleteMethod ) {
     one
       .delete( (request, response) => {
-        Model.destroy({ where: { id: request.params.id } })
+        Model.destroy({ where: query( request.params.id ) })
           .then( (numRows) => {
             if ( numRows === 0 ) {
               response.sendStatus( 404 );
@@ -121,8 +140,7 @@ function resourceRouter( Model, path, methods ) {
             }
           })
           .catch( (error) => {
-            response.sendStatus( 400 );
-            response.send( error );
+            response.status( 400 ).send( error );
           })
         ;
       })
