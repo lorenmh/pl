@@ -2,7 +2,7 @@ var express = require( 'express' ),
     app = express(),
     bodyParser = require( 'body-parser' ),
     db = require( './db' ),
-    resourceRouter = ( './resource-router' ),
+    resource = require( './resource' ),
     User = require( './models/user' )
 ;
 
@@ -13,7 +13,7 @@ app.use( bodyParser.json() );
 var port = 3000
 ;
 
-app.use( resourceRouter( User, '/' ) );
+app.use( resource.router( User, '/' ) );
 
 db.sync()
   .then( () => {
