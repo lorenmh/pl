@@ -2,30 +2,13 @@ var express = require( 'express' ),
     app = express(),
     bodyParser = require( 'body-parser' ),
     db = require( './db' ),
+    resourceRouter = ( './resource-router' ),
     User = require( './models/user' )
 ;
 
 app.use( bodyParser.urlencoded({ extended: true }) );
 app.use( bodyParser.json() );
 
-function resourceRouter( Model, path ) {
-  var router = express.Router();
-  
-  router.route( path )
-    .get( (request, response) => {
-      Model.findAll()
-        .then( (instances) => {
-          response.json( instances );
-        })
-        .catch( (error) => {
-          response.send( error );
-        })
-      ;
-    })
-  ;
-
-  return router;
-}
 
 var port = 3000
 ;
