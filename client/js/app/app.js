@@ -5,7 +5,8 @@ var React = require( 'react' ),
     routes = require( './routes' ),
     Provider = require( 'react-redux' ).Provider,
     configureStore = require( './configure-store' ),
-    store = configureStore()
+    store = configureStore(),
+    viz = require( './viz' )
 ;
 
 var APP_SELECTOR = '#app',
@@ -22,4 +23,4 @@ Router.run( routes, LOCATION, function( Handler, routerState ) {
     document.querySelector( APP_SELECTOR ) );
 });
 
-window.store = store;
+viz( document.body );
