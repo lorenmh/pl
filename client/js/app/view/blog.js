@@ -9,19 +9,23 @@ var Blog = React.createClass({
     this.props.dispatch( actions.getBlogsIfNeeded() );
   },
 
+  componentWillReceiveProps: function() {
+    console.log( "Received props" );
+  },
+
   //componentWillReceiveProps
   render: function() {
     var dispatch = this.props.dispatch,
-        blogs = ( this.props.blog && this.props.blog.items ) || []
+        blogItems = ( this.props.blog && this.props.blog.items ) || []
     ;
 
     return (
       <div>
-        {blogs.map( function( blog ) {
+        {blogItems.map( function( blogItem ) {
             return (
               <BlogItem
-                timestamp={blog.createdAt}
-                text={blog.text}
+                timestamp={blogItem.createdAt}
+                text={blogItem.text}
               />
             );
         })}

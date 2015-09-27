@@ -1,15 +1,18 @@
 var React = require( 'react' ),
     Router = require( 'react-router' ),
     HashLocation = Router.HashLocation,
+    HistoryLocation = Router.HistoryLocation,
     routes = require( './routes' ),
     Provider = require( 'react-redux' ).Provider,
     configureStore = require( './configure-store' ),
     store = configureStore()
 ;
 
-var APP_SELECTOR = '#app';
+var APP_SELECTOR = '#app',
+    LOCATION = HistoryLocation
+;
 
-Router.run( routes, HashLocation, function( Handler, routerState ) {
+Router.run( routes, LOCATION, function( Handler, routerState ) {
   React.render(
     (
       <Provider store={store}>

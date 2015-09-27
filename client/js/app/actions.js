@@ -28,7 +28,7 @@ function receiveBlogs( data ) {
 }
 
 function shouldGetBlogs( state ) {
-  return !state.blogs || !state.blogs.hasHadData;
+  return !state.blog || !state.blog.hasHadData;
 }
 
 module.exports.getBlogsIfNeeded = function() {

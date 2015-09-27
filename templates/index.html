@@ -1,6 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      .modal-overlay-hidden {
+        display: none;
+      }
+
+      .modal-hidden {
+        display: none;
+      }
+
+      .modal-overlay {
+        padding: 40px;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1111111;
+        display: block;
+        background-color: rgba(0,0,0,.7);
+        transition: background-color 0.5s ease-in-out;
+      }
+
+      .overlay-enter.modal-overlay {
+        background-color: rgba(0,0,0,0);
+      }
+
+      .overlay-enter.overlay-enter-active.modal-overlay{
+        background-color: rgba(0,0,0,.7);
+      }
+
+      .overlay-leave.modal-overlay {
+        background-color: rgba(0,0,0,.7);
+      }
+
+      .overlay-leave.overlay-leave-active.modal-overlay{
+        background-color: rgba(0,0,0,0);
+      }
+
+      .modal {
+        position: relative;
+        display: block;
+        max-width: 400px;
+        margin: auto;
+        background-color: white;
+        transform: translateY(0);
+        transition: transform .1s ease-in-out;
+      }
+
+      .overlay-enter .modal {
+        transition: transform .5s ease-in-out;
+        transform: translateY(-200%);
+      }
+
+      .overlay-enter.overlay-enter-active .modal{
+        transform: translateY(10px);
+      }
+
+      .overlay-leave .modal {
+        transition: transform .5s ease-in-out;
+        transform: translateY(10px);
+      }
+
+      .overlay-leave.overlay-leave-active .modal{
+        transform: translateY(-200%);
+      }
+
+      .virtual-scroll-container {
+        height: 100%;
+      }
+    </style>
   </head>
 
   <body>

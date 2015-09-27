@@ -6,14 +6,12 @@ var React = require( 'react' )
 var BlogItem = React.createClass({
   render: function() {
     return (
-      <div className="dir blog">
-        <div className="blog-timestamp">
+      <div className="blog-item">
+        <div className="blog-item-timestamp">
           {this.props.timestamp}
         </div>
-        <div className="blog-text-container">
-          <div className="blog-text">
-            {this.props.text}
-          </div>
+        <div className="blog-item-text">
+          {this.props.text}
         </div>
       </div>
     );

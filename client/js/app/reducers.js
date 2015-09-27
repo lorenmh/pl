@@ -3,7 +3,7 @@ var Redux = require( 'redux' ),
     es6 = require( './shim' )
 ;
 
-function initialStateBlogs() {
+function initialStateBlog() {
   return {
     pendingRequest: false,
     hasHadData: false,
@@ -11,9 +11,9 @@ function initialStateBlogs() {
   };
 }
 
-function blogs( state, action ) {
+function blog( state, action ) {
   if ( state === undefined ) {
-    state = initialStateBlogs();
+    state = initialStateBlog();
   }
 
   switch ( action.type ) {
@@ -62,7 +62,7 @@ function modal( state, action ) {
 
 function initialStateApp() {
   return {
-    blogs: initialStateBlogs(),
+    blogs: initialStateBlog(),
     modal: initialStateModal()
   };
 }
@@ -76,7 +76,7 @@ function app( state, action ) {
     case actions.REQUEST_BLOGS:
     case actions.RECEIVE_BLOGS:
       return es6.assign({}, state, {
-        blogs: blogs( state.blogs, action )
+        blog: blog( state.blogs, action )
       });
 
     case actions.ACTIVATE_MODAL:
