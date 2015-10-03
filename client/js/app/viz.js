@@ -5538,15 +5538,15 @@ module.exports = function( target ) {
 
   var bounds = target.getBoundingClientRect();
 
-  var a = bounds.width;
+  var a = Math.max( bounds.width, bounds.height );
   var m = 500 / a;
 
   var TWO_PI = Math.PI * 2,
       X_FACTOR = 100,
       Y_FACTOR = 100,
-      WIDTH = bounds.width,
-      HEIGHT = bounds.width,
-      NUM_DATA = 2000
+      WIDTH = a,
+      HEIGHT = a,
+      NUM_DATA = 2000,
       V_MAX = 0.05 * m,
       V_MIN = (- 0.05 * m)
   ;
@@ -5574,8 +5574,8 @@ module.exports = function( target ) {
   xScale = d3.scale.linear();
   yScale = d3.scale.linear();
 
-  mXScale = d3.scale.linear();
-  mYScale = d3.scale.linear();
+  var mXScale = d3.scale.linear();
+  var mYScale = d3.scale.linear();
 
   xScale
     .domain([ 0, X_FACTOR ])

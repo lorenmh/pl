@@ -39,6 +39,11 @@ apiRoutes.forEach( (router) => {
 
 app.use( express.static( './public' ) );
 
+app.get( '/favicon.ico', (request, response) => {
+  //return response.sendFile( path.join( __dirname, '' ) );
+  response.end();
+});
+
 app.get( '/*', (request, response) => {
   return response.sendFile( path.join( __dirname, 'templates/index.html' ) );
 });

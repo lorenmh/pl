@@ -40,9 +40,11 @@ module.exports = React.createClass({
         </Link>
         <ul id="nav-items">
           <NavItem  linkTo="blog"
-                    linkText="Blog" />
+                    linkText="blog" />
+          <NavItem  linkTo="about"
+                    linkText="about" />
           <NavModal modalId="contact"
-                    linkText="Contact" />
+                    linkText="contact" />
         </ul>
       </div>
     );

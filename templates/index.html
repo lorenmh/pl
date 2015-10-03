@@ -15,21 +15,39 @@
         background-color: #14141E;
         position: relative;
         overflow: hidden;
-        color: rgb(245,245,245);
+        color: rgb(255,255,255);
       }
 
       a {
-        color: rgb(245,245,245);
-        text-decoration: none;
+        color: rgb(255,255,255);
+        /*text-decoration: none;*/
       }
 
       a:hover {
-        color: rgb(255,255,255);
-        text-decoration: underline;
+        /*color: rgb(205,205,205);*/
+        /*text-decoration: underline;*/
       }
 
-      #app-name-link:hover {
-        text-decoration: none;
+      h1, h2, h3, h4, h5, p {
+        margin: 0;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      h1 {
+        font-size: 30;
+        line-height: 24px;
+      }
+
+      h2 {
+        font-size: 24px;
+        line-height: 18px;
       }
 
       #app-name {
@@ -38,6 +56,7 @@
 
       #app-name-link {
         margin-right: 20px;
+        text-decoration: none !important;
       }
 
       .nav-item {
@@ -45,6 +64,7 @@
       }
 
       .nav-item a {
+        text-decoration: none !important;
         display: block;
         padding: 2px 20px 7px;
       }
@@ -61,7 +81,7 @@
       }
 
       #nav {
-        padding: 2px 20px 0 20px;
+        padding: 0 20px;
         background-color: rgb(20, 20, 30);
         display: inline-block;
       }
@@ -87,9 +107,7 @@
       }
 
       .modal-overlay {
-        /* padding: 40px; */
-        width: 100%;
-        height: 100%;
+        padding: 40px;
         position: fixed;
         left: 0;
         top: 0;
@@ -150,7 +168,6 @@
       }
 
       #app {
-        max-width: 800px;
         margin: auto;
         position: absolute;
         left: 0;
@@ -160,13 +177,33 @@
         z-index: 2;
       }
 
-      #blog {
-        padding: 20px;
-        background-color: rgba( 20, 20, 30, 0.9 );
+      #wrapper {
+        max-width: 800px;
+        height: 100%;
+        margin: auto;
       }
 
-      .blog-item-title, .blog-teaser-title {
-        margin: 0;
+      #main {
+        height: 100%;
+        padding-top: 30px;
+        position: relative;
+      }
+
+      #nav {
+        position: absolute;
+        height: 30px;
+        top: 0;
+        left: 0;
+      }
+
+      #content {
+        overflow: auto;
+        height: 100%;
+      }
+
+      .pad-content {
+        padding: 20px;
+        background-color: rgba( 20, 20, 30, 0.7 );
       }
 
       .blog-item-timestamp, .blog-teaser-timestamp {
@@ -174,7 +211,7 @@
       }
 
       .blog-item-text {
-        margin-top: 5px;
+        margin-top: 16px;
       }
 
       .blog-teaser {
@@ -183,6 +220,25 @@
 
       .blog-teaser:last-child {
         margin-bottom: 0;
+      }
+
+      .blog-teaser > a {
+        text-decoration: none;
+      }
+
+      .blog-teaser > a:hover > .blog-teaser-title {
+        text-decoration: underline;
+      }
+
+      .blog-teaser-title {
+        margin-right: 10px;
+        font-size: 24px;
+        line-height: 18px;
+        font-weight: 700;
+      }
+
+      .blog-teaser-timestamp {
+        text-decoration: none !important;
       }
     </style>
   </head>

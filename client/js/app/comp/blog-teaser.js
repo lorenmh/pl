@@ -24,12 +24,12 @@ var BlogTeaser = React.createClass({
     return (
       <div className='blog-teaser'>
         <Link to={ `/blog/${slug}` }>
-          <h2 className='blog-teaser-title'>
+          <span className='blog-teaser-title'>
             { title }
-          </h2>
-          <div className='blog-teaser-timestamp'>
+          </span>
+          <span className='blog-teaser-timestamp'>
             { timestamp }
-          </div>
+          </span>
         </Link>
       </div>
     );

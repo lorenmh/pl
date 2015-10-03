@@ -1,6 +1,9 @@
 /* jshint node: true */
 
-var React = require( 'react' )
+var React = require( 'react' ),
+    Markdown = require( 'react-remarkable' ),
+    //rm = new require( 'remarkable' ),
+    md = require( 'markdown' ).markdown
 ;
 
 function formatIsoDateString( isoDateString ) {
@@ -15,9 +18,10 @@ function formatIsoDateString( isoDateString ) {
 var BlogItem = React.createClass({
   render: function() {
     var props = this.props,
-        title = props.title !== undefined ? props.text : '',
+        title = props.title !== undefined ? props.title : '',
         timestamp = props.timestamp ? formatIsoDateString( props.timestamp ) : '',
-        text = props.text !== undefined ? props.text : ''
+        text = props.text !== undefined ? props.text : '',
+        mdText = text.replace( '\n', '\r\n' )
     ;
 
     return (
@@ -29,7 +33,7 @@ var BlogItem = React.createClass({
           { timestamp }
         </div>
         <div className='blog-item-text'>
-          { text }
+          <Markdown source={ mdText } />
         </div>
       </div>
     );

@@ -8,6 +8,7 @@ var React         = require( 'react' ),
     // views
     App       = require( './view/app' ),
     Home      = require( './view/home' ), 
+    About     = require( './view/about' ), 
     Blog      = require( './view/blog' ),
     BlogView  = require( './view/blog-view' ),
     BlogTeasers = require( './view/blog-teasers' ),
@@ -17,6 +18,7 @@ var React         = require( 'react' ),
 module.exports = (
   <Route name="app" path="/" handler={App}>
     <DefaultRoute handler={Home} />
+    <Route name="about" path="about" handler={About} />
     <Route name="blog" path="blog" handler={Blog}>
       <DefaultRoute handler={BlogTeasers} />
       <Route path='/blog/:slug' handler={BlogView} />

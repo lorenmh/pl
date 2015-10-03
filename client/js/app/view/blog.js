@@ -8,7 +8,7 @@ var React = require( 'react' ),
 var BlogView = React.createClass({
   render: function() {
     return (
-      <div id="blog">
+      <div className="pad-content">
         <RouteHandler />
       </div>
     );

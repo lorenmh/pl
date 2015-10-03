@@ -14,7 +14,7 @@ var Blog = db.define( 'blog', {
 
   
   text: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     field: 'text',
     allowNull: false,
     validate: {

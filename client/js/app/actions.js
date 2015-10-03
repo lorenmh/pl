@@ -34,7 +34,7 @@ function receiveBlog( slug, data ) {
 }
 
 function shouldGetBlog( slug, state ) {
-  return !state.blog || !state.blog.items || !state.blog.items[ slug ] ;
+  return !state.blog || !state.blog[ slug ] ;
 }
 
 module.exports.getBlogIfNeeded = function( slug ) {
@@ -72,7 +72,7 @@ function receiveBlogTeasers( data ) {
 }
 
 function shouldGetBlogTeasers( state ) {
-  return !state.blogTeasers || !state.blogTeasers.hasHadData;
+  return !state.blogTeasers || !state.blogTeasers.items || !state.blogTeasers.items.length ;
 }
 
 module.exports.getBlogTeasersIfNeeded = function() {
