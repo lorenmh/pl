@@ -158,9 +158,9 @@ function formatIsoDateString( isoDateString ) {
 var BlogItem = React.createClass({displayName: "BlogItem",
   render: function() {
     var props = this.props,
-        title = props.title === undefined ? '' : props.title,
-        timestamp = formatIsoDateString( props.timestamp ),
-        text = props.text === undefined ? '' : props.text
+        title = props.title !== undefined ? props.text : '',
+        timestamp = props.timestamp ? formatIsoDateString( props.timestamp ) : '',
+        text = props.text !== undefined ? props.text : ''
     ;
 
     return (
