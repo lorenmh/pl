@@ -1,7 +1,7 @@
 var React = require( 'react' );
 
 var MODALS = {
-  'help': require( './help' )
+  'contact': require( './contact' )
 };
 
 

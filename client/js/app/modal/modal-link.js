@@ -10,10 +10,10 @@ var ModalLink = React.createClass({
     ;
 
     return (
-      <a onClick={function() {
+      <a href="#" onClick={function() {
         dispatch( actions.activateModal( modalId ) );
       }}>
-        {this.props.children}
+        { this.props.children }
       </a>
     );
   }

@@ -4,10 +4,10 @@ var React         = require( 'react' )
 // depends Header, Nav
 var Home = React.createClass({
   render: function() {
-    return(
-      <h1>Home</h1>
+    return (
+      <span style={{ display: 'none' }} />
     );
-   }
+  }
 });
 
 module.exports = Home; 

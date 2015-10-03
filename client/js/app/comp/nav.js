@@ -10,20 +10,20 @@ var NavItem = React.createClass({
   render: function() {
     return (
       <li className="nav-item">
-        <Link to={this.props.linkTo}>
-          <div className="nav-text">{this.props.linkText}</div>
+        <Link to={ this.props.linkTo }>
+          <div className="nav-text">{ this.props.linkText }</div>
         </Link>
       </li>
     );
   }
 });
 
-var NavHelp = React.createClass({
+var NavModal = React.createClass({
   render: function() {
     return (
       <li className="nav-item">
-        <ModalLink modalId="help">
-          <div className="nav-text">{this.props.linkText}</div>
+        <ModalLink modalId={ this.props.modalId }>
+          <div className="nav-text">{ this.props.linkText }</div>
         </ModalLink>
       </li>
     );
@@ -34,13 +34,15 @@ var NavHelp = React.createClass({
 module.exports = React.createClass({
   render: function() {
     return (
-      <div className="dir nav js-nav">
-        <ul>
+      <div id="nav">
+        <Link to="app" id="app-name-link">
+          <span id="app-name">plutonium.io</span>
+        </Link>
+        <ul id="nav-items">
           <NavItem  linkTo="blog"
                     linkText="Blog" />
-          <NavItem  linkTo="app"
-                    linkText="Home" />
-          <NavHelp  linkText="Help" />
+          <NavModal modalId="contact"
+                    linkText="Contact" />
         </ul>
       </div>
     );

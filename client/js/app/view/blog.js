@@ -10,7 +10,6 @@ var Blog = React.createClass({
   },
 
   componentWillReceiveProps: function() {
-    console.log( "Received props" );
   },
 
   //componentWillReceiveProps
@@ -20,18 +19,19 @@ var Blog = React.createClass({
     ;
 
     return (
-      <div>
-        {blogItems.map( function( blogItem ) {
+      <div className='blog-items'>
+        { blogItems.map( function( blogItem ) {
             return (
               <BlogItem
-                timestamp={blogItem.createdAt}
-                text={blogItem.text}
+                timestamp={ blogItem.createdAt }
+                title={ blogItem.title }
+                text={ blogItem.text }
               />
             );
-        })}
+        }) }
      </div>
     );
   }
 });
 
-module.exports = connect( function(state) { return state; } )( Blog );
+module.exports = connect( (state) => state )( Blog );

@@ -2,14 +2,14 @@ var React = require( 'react' ),
     Modal = require( './modal' )
 ;
 
-var Help = React.createClass({
+var Contact = React.createClass({
   render: function() {
     return (
       <Modal>
-        <h1>HELP!</h1>
+        <h1>CONTACT</h1>
       </Modal>
     );
   }
 });
 
-module.exports = Help;
+module.exports = Contact;

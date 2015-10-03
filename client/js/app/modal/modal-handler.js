@@ -13,7 +13,6 @@ var OVERLAY_KEY = 'OVERLAY',
 
 var ModalHandler = React.createClass({
   handleOverlayClick: function() {
-    console.log('ayyy')
     this.props.dispatch( actions.deactivateModal() );
   },
 
