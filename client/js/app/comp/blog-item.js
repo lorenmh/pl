@@ -14,16 +14,22 @@ function formatIsoDateString( isoDateString ) {
 
 var BlogItem = React.createClass({
   render: function() {
+    var props = this.props,
+        title = props.title === undefined ? '' : props.title,
+        timestamp = formatIsoDateString( props.timestamp ),
+        text = props.text === undefined ? '' : props.text
+    ;
+
     return (
       <div className='blog-item'>
         <h2 className='blog-item-title'>
-          { this.props.title }
+          { title }
         </h2>
         <div className='blog-item-timestamp'>
-          { formatIsoDateString( this.props.timestamp ) }
+          { timestamp }
         </div>
         <div className='blog-item-text'>
-          { this.props.text }
+          { text }
         </div>
       </div>
     );

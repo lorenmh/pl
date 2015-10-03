@@ -9,13 +9,18 @@ var React         = require( 'react' ),
     App       = require( './view/app' ),
     Home      = require( './view/home' ), 
     Blog      = require( './view/blog' ),
+    BlogView  = require( './view/blog-view' ),
+    BlogTeasers = require( './view/blog-teasers' ),
     NotFound  = require( './view/not-found' )
 ;
 
 module.exports = (
   <Route name="app" path="/" handler={App}>
     <DefaultRoute handler={Home} />
-    <Route name="blog" path="blog" handler={Blog} />
+    <Route name="blog" path="blog" handler={Blog}>
+      <DefaultRoute handler={BlogTeasers} />
+      <Route path='/blog/:slug' handler={BlogView} />
+    </Route>
     <Redirect from="/*/" to="/*" />
     <NotFoundRoute handler={NotFound} />
   </Route>

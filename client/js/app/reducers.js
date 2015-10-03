@@ -4,11 +4,7 @@ var Redux = require( 'redux' ),
 ;
 
 function initialStateBlog() {
-  return {
-    pendingRequest: false,
-    hasHadData: false,
-    items: []
-  };
+  return {};
 }
 
 function blog( state, action ) {
@@ -17,20 +13,36 @@ function blog( state, action ) {
   }
 
   switch ( action.type ) {
-    case actions.REQUEST_BLOGS:
-      return es6.assign({}, state, {
-        pendingRequest: true
-      });
-    case actions.RECEIVE_BLOGS:
-      return es6.assign({}, state, {
-        pendingRequest: false,
-        hasHadData: true,
+    case actions.RECEIVE_BLOG:
+      var newStateData = {};
+      newStateData[ action.slug ] = action.data;
+      return es6.assign( {}, state, newStateData );
+    default:
+      return state;
+  }
+}
+
+function initialStateBlogTeasers() {
+  return {
+    items: []
+  };
+}
+
+function blogTeasers( state, action ) {
+  if ( state === undefined ) {
+    state = initialStateBlogTeasers();
+  }
+
+  switch ( action.type ) {
+    case actions.RECEIVE_BLOG_TEASERS:
+      return es6.assign( {}, state, {
         items: action.data
       });
     default:
       return state;
   }
 }
+
 
 function initialStateModal() {
   return {
@@ -62,7 +74,8 @@ function modal( state, action ) {
 
 function initialStateApp() {
   return {
-    blogs: initialStateBlog(),
+    blog: initialStateBlog(),
+    blogTeasers: initialStateBlogTeasers(),
     modal: initialStateModal()
   };
 }
@@ -73,18 +86,19 @@ function app( state, action ) {
   }
 
   switch ( action.type ) {
-    case actions.REQUEST_BLOGS:
-    case actions.RECEIVE_BLOGS:
+    case actions.RECEIVE_BLOG:
       return es6.assign({}, state, {
-        blog: blog( state.blogs, action )
+        blog: blog( state.blog, action )
       });
-
+    case actions.RECEIVE_BLOG_TEASERS:
+      return es6.assign({}, state, {
+        blogTeasers: blogTeasers( state.blogTeasers, action )
+      });
     case actions.ACTIVATE_MODAL:
     case actions.DEACTIVATE_MODAL:
       return es6.assign({}, state, {
         modal: modal( state.modal, action )
       });
-
     default:
       return state;
   }

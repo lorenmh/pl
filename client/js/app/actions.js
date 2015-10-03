@@ -2,49 +2,93 @@ var es6 = require( './shim' ),
     http = require( './http' )
 ;
 
-module.exports.REQUEST_BLOGS = 'REQUEST_BLOGS';
-module.exports.RECEIVE_BLOGS = 'RECEIVE_BLOGS';
+module.exports.REQUEST_BLOG = 'REQUEST_BLOG';
+module.exports.RECEIVE_BLOG = 'RECEIVE_BLOG';
+
+module.exports.REQUEST_BLOG_TEASERS = 'REQUEST_BLOG_TEASERS';
+module.exports.RECEIVE_BLOG_TEASERS = 'RECEIVE_BLOG_TEASERS';
 
 module.exports.ACTIVATE_MODAL = 'ACTIVATE_MODAL';
 module.exports.DEACTIVATE_MODAL = 'DEACTIVATE_MODAL';
 
-var BLOG = 'blog'
+var BLOG = 'blog',
+    BLOG_TEASER = 'blog-teaser'
 ;
 
 ///////////////////////////////////////////////////////////////////////////////
 // #BLOGS
 ///////////////////////////////////////////////////////////////////////////////
-function requestBlogs() {
+function requestBlog( slug ) {
   return {
-    type: module.exports.REQUEST_BLOGS
+    type: module.exports.REQUEST_BLOG,
+    slug: slug
   };
 }
 
-function receiveBlogs( data ) {
+function receiveBlog( slug, data ) {
   return {
-    type: module.exports.RECEIVE_BLOGS,
+    type: module.exports.RECEIVE_BLOG,
+    slug: slug,
     data: data
   };
 }
 
-function shouldGetBlogs( state ) {
-  return !state.blog || !state.blog.hasHadData;
+function shouldGetBlog( slug, state ) {
+  return !state.blog || !state.blog.items || !state.blog.items[ slug ] ;
 }
 
-module.exports.getBlogsIfNeeded = function() {
+module.exports.getBlogIfNeeded = function( slug ) {
   return function( dispatch, getState ) {
-    if ( shouldGetBlogs( getState() ) ) {
-      return dispatch( module.exports.getBlogs() );
+    if ( shouldGetBlog( slug, getState() ) ) {
+      return dispatch( module.exports.getBlog( slug ) );
     }
   };
 };
 
-module.exports.getBlogs = function() {
+module.exports.getBlog = function( slug ) {
   return function( dispatch ) {
-    dispatch( requestBlogs() );
+    dispatch( requestBlog( slug ) );
 
-    http.get( BLOG ).then( function( data ) {
-      dispatch( receiveBlogs( data ) );
+    http.get( BLOG, slug ).then( function( data ) {
+      dispatch( receiveBlog( slug, data ) );
+    });
+  };
+};
+
+///////////////////////////////////////////////////////////////////////////////
+// #BLOGTEASERS
+///////////////////////////////////////////////////////////////////////////////
+function requestBlogTeasers() {
+  return {
+    type: module.exports.REQUEST_BLOG_TEASERS
+  };
+}
+
+function receiveBlogTeasers( data ) {
+  return {
+    type: module.exports.RECEIVE_BLOG_TEASERS,
+    data: data
+  };
+}
+
+function shouldGetBlogTeasers( state ) {
+  return !state.blogTeasers || !state.blogTeasers.hasHadData;
+}
+
+module.exports.getBlogTeasersIfNeeded = function() {
+  return function( dispatch, getState ) {
+    if ( shouldGetBlogTeasers( getState() ) ) {
+      return dispatch( module.exports.getBlogTeasers() );
+    }
+  };
+};
+
+module.exports.getBlogTeasers = function() {
+  return function( dispatch ) {
+    dispatch( requestBlogTeasers() );
+
+    http.get( BLOG_TEASER ).then( function( data ) {
+      dispatch( receiveBlogTeasers( data ) );
     });
   };
 };

@@ -11,7 +11,8 @@ function resourceRouter( Model, path, options ) {
   options = options || {} ;
 
   var methods = options.methods,
-      key = options.key
+      key = options.key,
+      attributes = options.attributes
   ;
   
   var router = express.Router();
@@ -63,7 +64,7 @@ function resourceRouter( Model, path, options ) {
   if ( getMethod ) {
     all
       .get( (request, response) => {
-        Model.findAll()
+        Model.findAll({ attributes: attributes })
           .then( (instances) => {
             response.json( instances );
           })
@@ -76,7 +77,10 @@ function resourceRouter( Model, path, options ) {
 
     one
       .get( (request, response) => {
-        Model.findOne({ where: query( request.params.id ) })
+        Model.findOne({ 
+          where: query( request.params.id ),
+          attributes: attributes
+        })
           .then( (instance) => {
             if ( instance === null ) {
               response.sendStatus( 404 );

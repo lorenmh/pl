@@ -19,9 +19,17 @@ var apiRoutes = [
   resource.router( Contact, '/contact', {
     methods: [ resource.method.POST ]
   }),
+  
   resource.router( Blog, '/blog', {
     methods: [ resource.method.GET ],
-    key: 'slug'
+    key: 'slug',
+    attributes: [ 'slug', 'title', 'text', 'createdAt' ]
+  }),
+  
+  resource.router( Blog, '/blog-teaser', {
+    methods: [ resource.method.GET ],
+    key: 'slug',
+    attributes: [ 'slug', 'title', 'createdAt' ]
   })
 ];
 

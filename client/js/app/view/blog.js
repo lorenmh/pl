@@ -1,37 +1,18 @@
 var React = require( 'react' ),
+    RouteHandler  = require( 'react-router' ).RouteHandler,
     actions = require( '../actions' ),
     connect = require( 'react-redux' ).connect,
     BlogItem = require( '../comp/blog-item' )
 ;
 
-var Blog = React.createClass({
-  componentDidMount: function() {
-    this.props.dispatch( actions.getBlogsIfNeeded() );
-  },
-
-  componentWillReceiveProps: function() {
-  },
-
-  //componentWillReceiveProps
+var BlogView = React.createClass({
   render: function() {
-    var dispatch = this.props.dispatch,
-        blogItems = ( this.props.blog && this.props.blog.items ) || []
-    ;
-
     return (
-      <div className='blog-items'>
-        { blogItems.map( function( blogItem ) {
-            return (
-              <BlogItem
-                timestamp={ blogItem.createdAt }
-                title={ blogItem.title }
-                text={ blogItem.text }
-              />
-            );
-        }) }
-     </div>
+      <div id="blog">
+        <RouteHandler />
+      </div>
     );
   }
 });
 
-module.exports = connect( (state) => state )( Blog );
+module.exports = connect( (state) => state )( BlogView );
