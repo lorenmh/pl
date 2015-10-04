@@ -43,8 +43,8 @@ module.exports = React.createClass({
                     linkText="blog" />
           <NavItem  linkTo="about"
                     linkText="about" />
-          <NavModal modalId="contact"
-                    linkText="contact" />
+          {/*<NavModal modalId="contact"
+                    linkText="contact" />*/}
         </ul>
       </div>
     );

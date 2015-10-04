@@ -1,13 +1,157 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed imperdiet nunc. Nunc vel eros posuere ex sodales ultrices eget ut purus. Nam eleifend congue turpis, et dictum lacus mattis et. Vestibulum fermentum nibh ac massa consequat porta. Mauris ut metus rutrum, venenatis turpis et, tincidunt orci. Mauris eu erat vitae enim condimentum faucibus ut in tellus. Fusce arcu lorem, ultricies et turpis egestas, elementum molestie erat. Integer nec dolor sed mi egestas consectetur at sit amet erat. Etiam sed feugiat velit. Proin tincidunt eros a porta commodo. Aliquam auctor, metus sit amet sodales egestas, risus ipsum porttitor dui, quis consequat risus metus id ipsum.  
+An h1 header
+============
 
-** eyyyyy **
+Paragraphs are separated by a blank line.
 
-```
-Donec ut nisi eu nisl semper vestibulum. Mauris luctus at urna a gravida. Etiam elementum porta augue eu luctus. Phasellus commodo risus sit amet eleifend convallis. Aliquam ullamcorper risus non porta hendrerit. Ut rhoncus interdum ex, consequat elementum tellus dictum et. Ut tincidunt lorem at ipsum ultrices accumsan. Integer fringilla venenatis tempus. Phasellus ut pellentesque eros. Proin non ante ac nulla mattis interdum. Nullam ut commodo justo. Vivamus at magna quis diam gravida lacinia at ac lectus. Aenean ac lorem nunc. Maecenas in sapien est. Fusce vestibulum urna nulla, in posuere enim mattis non.  
-```
+2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
+look like:
 
-Suspendisse mattis tellus ac lorem ultrices, in pellentesque sem pretium. In tempus, erat non suscipit maximus, nunc eros porttitor ante, sed dignissim urna ligula nec tortor. Duis in vulputate neque. Donec mi risus, imperdiet sed sodales vel, vehicula quis nunc. Aliquam ut pretium risus. Phasellus viverra orci nisi, id tempor elit mattis ac. Nullam tortor mauris, egestas in magna nec, fermentum mattis lacus. Etiam imperdiet lobortis leo, ut varius arcu pretium vel. Mauris rhoncus metus at urna blandit ullamcorper. Donec vitae malesuada risus. Vestibulum sed nibh sollicitudin, pretium magna in, feugiat sapien. Praesent in eleifend dolor. Quisque eu nibh venenatis risus venenatis ultrices auctor non neque. Aenean porta lectus quam, et imperdiet ipsum convallis nec.  
+  * this one
+  * that one
+  * the other one
 
-Etiam quis ligula maximus, convallis risus ac, viverra arcu. Sed dapibus nunc et tellus cursus vehicula. Sed ut augue non nisi convallis tristique rutrum eget nisi. Vestibulum id urna eu orci rhoncus aliquet. Fusce massa purus, vehicula non tempor quis, ultrices a neque. Vivamus at consectetur nibh, et volutpat elit. Donec rhoncus odio non quam cursus pulvinar sed non mauris.  
+Note that --- not considering the asterisk --- the actual text
+content starts at 4-columns in.
 
-Nullam interdum venenatis imperdiet. Aliquam tincidunt dolor ac justo pharetra sollicitudin. Maecenas dignissim congue faucibus. Pellentesque consectetur velit non pretium finibus. Nullam in neque sit amet risus commodo lacinia. Pellentesque vel nisl lorem. Ut vel lectus ac lacus bibendum hendrerit nec quis metus. Proin ut euismod ipsum, a congue enim. Nunc ante erat, commodo eu dolor vel, porttitor semper neque. Quisque a consequat erat. Praesent cursus ligula id odio malesuada consequat in sed enim. Vivamus faucibus mauris id ipsum porttitor gravida. Sed ornare viverra sapien, ut maximus neque malesuada fermentum. Sed hendrerit congue erat, nec congue lectus feugiat vel. Sed non ligula nec massa pretium ultricies eu non erat. Sed sed pellentesque lorem.
+> Block quotes are
+> written like so.
+>
+> They can span multiple paragraphs,
+> if you like.
+
+Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., "it's all
+in chapters 12--14"). Three dots ... will be converted to an ellipsis.
+Unicode is supported. ☺
+
+
+
+An h2 header
+------------
+
+Here's a numbered list:
+
+ 1. first item
+ 2. second item
+ 3. third item
+
+Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here's a code sample:
+
+    # Let me re-iterate ...
+    for i in 1 .. 10 { do-something(i) }
+
+As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:
+
+~~~
+define foobar() {
+    print "Welcome to flavor country!";
+}
+~~~
+
+(which makes copying &amp; pasting easier). You can optionally mark the
+delimited block for Pandoc to syntax highlight it:
+
+~~~python
+import time
+# Quick, count to ten!
+for i in range(10):
+    # (but not *too* quick)
+    time.sleep(0.5)
+    print i
+~~~
+
+
+
+### An h3 header ###
+
+Now a nested list:
+
+ 1. First, get these ingredients:
+
+      * carrots
+      * celery
+      * lentils
+
+ 2. Boil some water.
+
+ 3. Dump everything in the pot and follow
+    this algorithm:
+
+        find wooden spoon
+        uncover pot
+        stir
+        cover pot
+        balance wooden spoon precariously on pot handle
+        wait 10 minutes
+        goto first step (or shut off burner when done)
+
+    Do not bump wooden spoon or it will fall.
+
+Notice again how text always lines up on 4-space indents (including
+that last line which continues item 3 above).
+
+Here's a link to [a website](http://foo.bar), to a [local
+doc](local-doc.html), and to a [section heading in the current
+doc](#an-h2-header). Here's a footnote [^1].
+
+[^1]: Footnote text goes here.
+
+Tables can look like this:
+
+size  material      color
+----  ------------  ------------
+9     leather       brown
+10    hemp canvas   natural
+11    glass         transparent
+
+Table: Shoes, their sizes, and what they're made of
+
+(The above is the caption for the table.) Pandoc also supports
+multi-line tables:
+
+--------  -----------------------
+keyword   text
+--------  -----------------------
+red       Sunsets, apples, and
+          other red or reddish
+          things.
+
+green     Leaves, grass, frogs
+          and other things it's
+          not easy being.
+--------  -----------------------
+
+A horizontal rule follows.
+
+***
+
+Here's a definition list:
+
+apples
+  : Good for making applesauce.
+oranges
+  : Citrus!
+tomatoes
+  : There's no "e" in tomatoe.
+
+Again, text is indented 4 spaces. (Put a blank line between each
+term/definition pair to spread things out more.)
+
+Here's a "line block":
+
+| Line one
+|   Line too
+| Line tree
+
+and images can be specified like so:
+
+![example image](example-image.jpg "An exemplary image")
+
+Inline math equations go in like so: $\omega = d\phi / dt$. Display
+math should get its own line and be put in in double-dollarsigns:
+
+$$I = \int \rho R^{2} dV$$
+
+And note that you can backslash-escape any punctuation characters
+which you wish to be displayed literally, ex.: \`foo\`, \*bar\*, etc.

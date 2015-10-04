@@ -2,8 +2,7 @@
 
 var React = require( 'react' ),
     Markdown = require( 'react-remarkable' ),
-    //rm = new require( 'remarkable' ),
-    md = require( 'markdown' ).markdown
+    hljs = require( 'highlight.js' )
 ;
 
 function formatIsoDateString( isoDateString ) {
@@ -16,6 +15,26 @@ function formatIsoDateString( isoDateString ) {
 }
 
 var BlogItem = React.createClass({
+  prettify: function() {
+    var codeEls = React.findDOMNode( this ).querySelectorAll( 'pre > code' );
+    
+    if ( !codeEls ) { return; }
+
+    Array.prototype.slice.call( codeEls )
+      .forEach( function( codeEl ) {
+        hljs.highlightBlock( codeEl );
+      })
+    ;
+  },
+
+  componentDidMount: function() {
+    this.prettify();
+  },
+
+  componentDidUpdate: function() {
+    this.prettify();
+  },
+
   render: function() {
     var props = this.props,
         title = props.title !== undefined ? props.title : '',
@@ -26,9 +45,9 @@ var BlogItem = React.createClass({
 
     return (
       <div className='blog-item'>
-        <h2 className='blog-item-title'>
+        <h1 className='blog-item-title'>
           { title }
-        </h2>
+        </h1>
         <div className='blog-item-timestamp'>
           { timestamp }
         </div>

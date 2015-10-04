@@ -13,11 +13,10 @@ if ( !blogFile || !slug || !title ) {
 
 fs.readFile( `./blogs/${blogFile}`, 'utf8' )
   .then( (blog) => {
-    console.log( blog );
     db.sync()
       .then( () => {
         Blog
-          .create({
+          .upsert({
             text: blog,
             title: title,
             slug: slug
