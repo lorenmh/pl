@@ -1,8 +1,7 @@
 /* jshint node: true */
 
 var React = require( 'react' ),
-    Markdown = require( 'react-remarkable' ),
-    hljs = require( 'highlight.js' )
+    Markdown = require( 'react-remarkable' )
 ;
 
 function formatIsoDateString( isoDateString ) {
@@ -22,7 +21,7 @@ var BlogItem = React.createClass({
 
     Array.prototype.slice.call( codeEls )
       .forEach( function( codeEl ) {
-        hljs.highlightBlock( codeEl );
+        window.hljs.highlightBlock( codeEl );
       })
     ;
   },
