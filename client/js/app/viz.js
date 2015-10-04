@@ -5528,10 +5528,10 @@ var data = [
 // ;
 
 
-var d3 = require( 'd3' );
+//var d3 = require( 'd3' );
 
 module.exports = function( target ) {
-  var canvas, context, xScale, yScale
+  var canvas, context
   ;
 
 
@@ -5570,32 +5570,48 @@ module.exports = function( target ) {
   context = canvas.getContext( '2d' );
 
   target.appendChild( canvas );
-    
-  xScale = d3.scale.linear();
-  yScale = d3.scale.linear();
+ 
+  function scale( d, r ) {
+    var dd = d[1] - d[0],
+        dr = r[1] - r[0]
+    ;
 
-  var mXScale = d3.scale.linear();
-  var mYScale = d3.scale.linear();
-
-  xScale
-    .domain([ 0, X_FACTOR ])
-    .range([ 0, WIDTH ])
+    return function( v ) {
+      return ( ( v - d[0] ) / dd ) * ( dr ) + r[0];
+    };
+  }
+ 
+  var xScale = scale([ 0, X_FACTOR ], [ 0, WIDTH ]),
+      yScale = scale([ 0, Y_FACTOR ], [ HEIGHT, 0 ]),
+      mXScale = scale([ 0, WIDTH ], [ 0, X_FACTOR ]),
+      mYScale = scale([ HEIGHT, 0 ], [ 0, Y_FACTOR ])
   ;
 
-  yScale
-    .domain([ 0, Y_FACTOR ])
-    .range([ HEIGHT, 0 ])
-  ;
+  // xScale = d3.scale.linear();
+  // yScale = d3.scale.linear();
 
-  mXScale
-    .domain([ 0, WIDTH ])
-    .range([ 0, X_FACTOR ])
-  ;
-  
-  mYScale
-    .domain([ HEIGHT, 0 ])
-    .range([ 0, Y_FACTOR ])
-  ;
+  // var mXScale = d3.scale.linear();
+  // var mYScale = d3.scale.linear();
+
+  // xScale
+  //   .domain([ 0, X_FACTOR ])
+  //   .range([ 0, WIDTH ])
+  // ;
+
+  // yScale
+  //   .domain([ 0, Y_FACTOR ])
+  //   .range([ HEIGHT, 0 ])
+  // ;
+
+  // mXScale
+  //   .domain([ 0, WIDTH ])
+  //   .range([ 0, X_FACTOR ])
+  // ;
+  // 
+  // mYScale
+  //   .domain([ HEIGHT, 0 ])
+  //   .range([ 0, Y_FACTOR ])
+  // ;
 
     window.POI = [ mXScale( WIDTH / 2 ), mYScale( HEIGHT / 2 )];
   data.forEach( function(d) {
