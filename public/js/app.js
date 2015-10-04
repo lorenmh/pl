@@ -6597,9 +6597,9 @@ module.exports = function( target ) {
 
   window.stop = false;
   window.timedOut = false;
-context.rect( 0, 0, WIDTH, HEIGHT );
-      context.fillStyle = 'rgba(20,20,30,1)';
-      context.fill();
+// context.rect( 0, 0, WIDTH, HEIGHT );
+//       context.fillStyle = 'rgba(20,20,30,1)';
+//       context.fill();
   var count = 0;
   requestAnimationFrame(function draw() {
     if ( window.timedOut ) {
