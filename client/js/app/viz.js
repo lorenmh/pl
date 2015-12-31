@@ -5551,7 +5551,10 @@ module.exports = function( target ) {
       V_MIN = (- 0.05 * m)
   ;
 
-
+  var tm = 1000 / 60;
+requestAnimationFrame = typeof requestAnimationFrame !== 'undefined' ? requestAnimationFrame : function(fn) {
+  setTimeout( fn, tm );
+};
 
 
   function drawCircle( ctx, x, y, r, fill ) {
